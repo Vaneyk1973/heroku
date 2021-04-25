@@ -15,9 +15,9 @@ public class HomeController {
 
     @RequestMapping("/index")
     public String index(){
-        return new Random().nextGaussian()+"<html>\n" +
+        return "<html>\n" +
                 "<body>\n" +
-                "<a href=\"https://m5hw.herokuapp.com/index\"><button>JJJJ</button></a>\n" +
+                "<a href=\"https://m5hw.herokuapp.com\"><button>JJJJ</button></a>\n" +
                 "</body>\n" +
                 "</html>";
     }
@@ -31,7 +31,8 @@ public class HomeController {
     public String g(){
         String html="<html>\n" +
                 "<body>\n" +
-                "<a href=\"https://m5hw.herokuapp.com/index\"><button>JJJJ</button></a>\n" +
+                "<p><a href=\"https://m5hw.herokuapp.com/index\"><button>JJJJ</button></a></p>\n" +
+                "<image src=\"https://st4.depositphotos.com/16030310/25211/v/1600/depositphotos_252112804-stock-illustration-vector-illustration-of-golden-letters.jpg\"/>\n" +
                 "</body>\n" +
                 "</html>";
         return html;
