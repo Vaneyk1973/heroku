@@ -15,7 +15,11 @@ public class HomeController {
 
     @RequestMapping("/index")
     public String index(){
-        return new Random().nextGaussian()+"";
+        return new Random().nextGaussian()+"<html>\n" +
+                "<body>\n" +
+                "<a href=\"https://m5hw.herokuapp.com/index\"><button>JJJJ</button></a>\n" +
+                "</body>\n" +
+                "</html>";
     }
 
     @RequestMapping("/kitten")
