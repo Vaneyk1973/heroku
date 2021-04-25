@@ -21,4 +21,7 @@ public class HomeController {
     public String kitten(){
         return "Hello world";
     }
+
+    @RequestMapping("")
+    public String g(){return "ttt";}
 }
