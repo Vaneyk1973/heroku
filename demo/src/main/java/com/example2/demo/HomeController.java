@@ -38,10 +38,10 @@ public class HomeController {
         return html;
     }
 
-    @RequestMapping("/0")
+    @RequestMapping("/6")
     public double g0(){
         double a=0;
-        while (a<=0)
+        while (a<6)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -52,10 +52,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/0.5")
+    @RequestMapping("/6.5")
     public double g05(){
         double a=0;
-        while (a<0.5)
+        while (a<6.5)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -66,10 +66,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/1")
+    @RequestMapping("/7")
     public double g1(){
         double a=0;
-        while (a<1)
+        while (a<7)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -80,10 +80,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/1.5")
+    @RequestMapping("/7.5")
     public double g15(){
         double a=0;
-        while (a<1.5)
+        while (a<7.5)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -94,10 +94,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/2")
+    @RequestMapping("/8")
     public double g2(){
         double a=0;
-        while (a<2)
+        while (a<8)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -108,10 +108,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/2.5")
+    @RequestMapping("/8.5")
     public double g25(){
         double a=0;
-        while (a<2.5)
+        while (a<8.5)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -122,10 +122,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/3")
+    @RequestMapping("/9")
     public double g3(){
         double a=0;
-        while (a<3)
+        while (a<9)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -136,10 +136,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/3.5")
+    @RequestMapping("/9.5")
     public double g35(){
         double a=0;
-        while (a<3.5)
+        while (a<9.5)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
@@ -150,10 +150,10 @@ public class HomeController {
         return a;
     }
 
-    @RequestMapping("/4")
+    @RequestMapping("/10")
     public double g4(){
         double a=0;
-        while (a<4)
+        while (a<10)
             a=new Random().nextGaussian();
         /*String html="<html>\n" +
                 "<body>\n" +
