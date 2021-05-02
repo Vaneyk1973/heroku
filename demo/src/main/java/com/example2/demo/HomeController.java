@@ -1,6 +1,7 @@
 package com.example2.demo;
 
 import com.google.gson.Gson;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public String put_message(@RequestParam("message") Message message){
+    public String put_message(@RequestBody Message message){
         messages.add(message);
         return new Gson().toJson(message);
     }
@@ -52,6 +53,6 @@ public class HomeController {
     class Message{
         public String message, user;
         public long date;
-        
+
     }
 }
