@@ -35,7 +35,7 @@ public class HomeController {
 
     @RequestMapping("/get_messages")
     public String get_messages(){
-        return new Gson().toJson(new ArrayList<>(messages));
+        return new Gson().toJson(messages);
     }
 
     @RequestMapping("")
