@@ -51,9 +51,9 @@ public class HomeController {
 
     class Message{
         public String message, user;
-        public Date date;
+        public long date;
 
-        public Message(String message, String user, Date date) {
+        public Message(String message, String user, long date) {
             this.message = message;
             this.user = user;
             this.date = date;
