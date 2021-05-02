@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 @RestController
 public class HomeController {
-    ArrayList<String> messages=new ArrayList<>();
+    ArrayList<Message> messages=new ArrayList<>();
 
     @RequestMapping("/home")
     public String home(){
@@ -27,7 +28,7 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public String kitten(@RequestParam("message") String message){
+    public String kitten(@RequestParam("message") Message message){
         messages.add(message);
         return new Gson().toJson(message);
     }
@@ -46,5 +47,16 @@ public class HomeController {
                 "</body>\n" +
                 "</html>";
         return html;
+    }
+
+    class Message{
+        public String message, user;
+        public Date date;
+
+        public Message(String message, String user, Date date) {
+            this.message = message;
+            this.user = user;
+            this.date = date;
+        }
     }
 }
