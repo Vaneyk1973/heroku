@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public String kitten(@RequestParam("message") Message message){
+    public String put_message(@RequestParam("message") Message message){
         messages.add(message);
         return new Gson().toJson(message);
     }
