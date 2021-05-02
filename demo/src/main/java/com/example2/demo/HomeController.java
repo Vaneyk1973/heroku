@@ -2,6 +2,7 @@ package com.example2.demo;
 
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public void kitten(String a){
+    public void kitten(@RequestParam String a){
         messages.add(a);
     }
 
