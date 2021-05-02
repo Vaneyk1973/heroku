@@ -29,7 +29,7 @@ public class HomeController {
     @RequestMapping("/put_message")
     public String kitten(@RequestParam("message") String message){
         messages.add(message);
-        return new Gson().toJson(new ArrayList<>(messages));
+        return new Gson().toJson(new ArrayList<>(messages).size());
     }
 
     @RequestMapping("/get_messages")
