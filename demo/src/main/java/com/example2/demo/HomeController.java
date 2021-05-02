@@ -27,11 +27,12 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public void kitten(@RequestParam("message") String message){
+    public String kitten(@RequestParam("message") String message){
         messages.add(message);
+        return new Gson().toJson(new ArrayList<>(messages));
     }
 
-    @RequestMapping("/get_message")
+    @RequestMapping("/get_messages")
     public String get_messages(){
         return new Gson().toJson(new ArrayList<>(messages));
     }
