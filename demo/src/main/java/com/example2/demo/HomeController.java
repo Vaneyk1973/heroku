@@ -1,6 +1,8 @@
 package com.example2.demo;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,8 +53,38 @@ public class HomeController {
     }
 
     class Message{
-        public String message, user;
+        @Expose
+        @SerializedName("message")
+        public String message;
+        @Expose
+        @SerializedName("user")
+        public String user;
+        @Expose
+        @SerializedName("date")
         public long date;
 
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public void setUser(String user) {
+            this.user = user;
+        }
+
+        public long getDate() {
+            return date;
+        }
+
+        public void setDate(long date) {
+            this.date = date;
+        }
     }
 }
