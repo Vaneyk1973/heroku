@@ -27,8 +27,8 @@ public class HomeController {
     }
 
     @RequestMapping("/put_message")
-    public void kitten(@RequestParam String a){
-        messages.add(a);
+    public void kitten(@RequestParam("message") String message){
+        messages.add(message);
     }
 
     @RequestMapping("/get_message")
