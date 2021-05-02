@@ -26,7 +26,7 @@ public class HomeController {
 
     @RequestMapping("/kitten")
     public String kitten(){
-        return new Gson().toJson("Hello world");
+        return new Gson().toJson("Hello worl");
     }
 
     @RequestMapping("")
