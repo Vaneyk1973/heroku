@@ -32,7 +32,7 @@ public class HomeController {
 
     @RequestMapping("/put_message")
     public void put_message(@RequestParam("message") String message){
-        messages.add(Integer.getInteger(message));
+        messages.add(Integer.parseInt(message));
     }
 
     @RequestMapping("/get_messages")
