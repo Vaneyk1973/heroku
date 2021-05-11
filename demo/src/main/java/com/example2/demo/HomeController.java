@@ -14,7 +14,7 @@ import java.util.Random;
 
 @RestController
 public class HomeController {
-    ArrayList<Integer> messages=new ArrayList<>();
+    ArrayList<Message> messages=new ArrayList<>();
 
     @RequestMapping("/home")
     public String home(){
@@ -32,8 +32,8 @@ public class HomeController {
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message){
-        messages.add(Integer.parseInt(message));
-        return message;
+        messages.add(new Gson().fromJson(message, Message.class));
+        return new Gson().toJson(message);
     }
 
     @RequestMapping("/get_messages")
