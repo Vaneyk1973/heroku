@@ -62,29 +62,5 @@ public class HomeController {
         @Expose
         @SerializedName("date")
         public long date;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getUser() {
-            return user;
-        }
-
-        public void setUser(String user) {
-            this.user = user;
-        }
-
-        public long getDate() {
-            return date;
-        }
-
-        public void setDate(long date) {
-            this.date = date;
-        }
     }
 }
