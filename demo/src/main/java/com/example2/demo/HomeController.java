@@ -63,4 +63,23 @@ public class HomeController {
         @SerializedName("date")
         public long date;
     }
+
+    class User{
+        private String login;
+        private int password;
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public void setPassword(String password) {
+            this.password = password.hashCode();
+        }
+
+        public boolean try_password(String password){
+            if (password.hashCode()==this.password)
+                return true;
+            return false;
+        }
+    }
 }
