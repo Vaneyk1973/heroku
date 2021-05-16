@@ -3,32 +3,18 @@ package com.example2.demo;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
+import java.util.Objects;
 
 @RestController
 public class HomeController {
     ArrayList<Message> messages=new ArrayList<>();
-
-    @RequestMapping("/home")
-    public String home(){
-        return "Hello world";
-    }
-
-    @RequestMapping("/index")
-    public String index(){
-        return "<html>\n" +
-                "<body>\n" +
-                "<a href=\"https://m5hw.herokuapp.com\"><button>JJJJ</button></a>\n" +
-                "</body>\n" +
-                "</html>";
-    }
+    ArrayList<User> users=new ArrayList<>();
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message){
@@ -41,15 +27,32 @@ public class HomeController {
         return new Gson().toJson(messages);
     }
 
-    @RequestMapping("")
-    public String g(){
-        String html="<html>\n" +
-                "<body>\n" +
-                "<p><a href=\"https://m5hw.herokuapp.com/index\"><button>JJJJ</button></a></p>\n" +
-                "<image src=\"https://st4.depositphotos.com/16030310/25211/v/1600/depositphotos_252112804-stock-illustration-vector-illustration-of-golden-letters.jpg\"/>\n" +
-                "</body>\n" +
-                "</html>";
-        return html;
+    @RequestMapping("/register")
+    public String register(@RequestParam("login") String login, @RequestParam("password") String password){
+        User user=new User(login, password);
+        if (users.contains(user))
+            return "This login is already in use";
+        else{
+            users.add(user);
+            user.logged_in=true;
+            return "You're registered";
+        }
+    }
+
+    @RequestMapping("/log_in")
+    public String log_in(@RequestParam("login") String login, @RequestParam("password") String password){
+        if(users.contains(new User(login, password))){
+            if (users.get(users.indexOf(new User(login, password))).try_password(password))
+                users.get(users.indexOf(new User(login, password))).log_in();
+            return "Successful";
+        }
+        return "No such a login";
+    }
+
+    @RequestMapping("/log_out")
+    public String log_out(@RequestParam("user") String user){
+        users.get(users.indexOf(new Gson().fromJson(user, User.class))).log_out();
+        return "Logged out";
     }
 
     class Message{
@@ -58,19 +61,28 @@ public class HomeController {
         public String message;
         @Expose
         @SerializedName("user")
-        public String user;
+        public User user;
         @Expose
         @SerializedName("date")
-        public long date;
+        public Date date;
     }
 
     class User{
-        private String login;
+        public String login;
         private int password;
+        private boolean logged_in;
+
+        public User (String login, String password){
+            this.login=login;
+            this.password=password.hashCode();
+            logged_in=false;
+        }
 
         public void setLogin(String login) {
             this.login = login;
         }
+
+        public String getLogin(){return login;}
 
         public void setPassword(String password) {
             this.password = password.hashCode();
@@ -80,6 +92,27 @@ public class HomeController {
             if (password.hashCode()==this.password)
                 return true;
             return false;
+        }
+
+        public void log_in(){
+            logged_in=true;
+        }
+
+        public void log_out(){
+            logged_in=false;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof User)) return false;
+            User user = (User) o;
+            return Objects.equals(getLogin(), user.getLogin());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getLogin());
         }
     }
 }
