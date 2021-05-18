@@ -55,6 +55,18 @@ public class HomeController {
         return "Logged out";
     }
 
+    @RequestMapping("/is_registered")
+    public Boolean is_registered(@RequestParam("login") String login){
+        return users.contains(new User(login, ""));
+    }
+
+    @RequestMapping("/is_logged_in")
+    public Boolean is_logged_in(@RequestParam("login") String login){
+        if (is_registered(login))
+            return users.get(users.indexOf(new User(login, ""))).logged_in;
+        else return false;
+    }
+
     class Message{
         @Expose
         @SerializedName("message")
@@ -101,6 +113,7 @@ public class HomeController {
         public void log_out(){
             logged_in=false;
         }
+
 
         @Override
         public boolean equals(Object o) {
