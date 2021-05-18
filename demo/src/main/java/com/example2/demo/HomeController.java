@@ -31,11 +31,11 @@ public class HomeController {
     public String register(@RequestParam("login") String login, @RequestParam("password") String password){
         User user=new User(login, password);
         if (users.contains(user))
-            return "This login is already in use";
+            return new Gson().toJson("This login is already in use");
         else{
             users.add(user);
             user.logged_in=true;
-            return "You're registered";
+            return new Gson().toJson("You're registered");
         }
     }
 
