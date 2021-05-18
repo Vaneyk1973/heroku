@@ -56,15 +56,15 @@ public class HomeController {
     }
 
     @RequestMapping("/is_registered")
-    public Boolean is_registered(@RequestParam("login") String login){
-        return users.contains(new User(login, ""));
+    public String is_registered(@RequestParam("login") String login){
+        return new Gson().toJson(users.contains(new User(login, "")));
     }
 
     @RequestMapping("/is_logged_in")
-    public Boolean is_logged_in(@RequestParam("login") String login){
-        if (is_registered(login))
-            return users.get(users.indexOf(new User(login, ""))).logged_in;
-        else return false;
+    public String is_logged_in(@RequestParam("login") String login){
+        if (new Gson().fromJson(is_registered(login), Boolean.class))
+            return new Gson().toJson(users.get(users.indexOf(new User(login, ""))).logged_in);
+        else return new Gson().toJson(false);
     }
 
     class Message{
