@@ -44,15 +44,15 @@ public class HomeController {
         if(users.contains(new User(login, password))){
             if (users.get(users.indexOf(new User(login, password))).try_password(password))
                 users.get(users.indexOf(new User(login, password))).log_in();
-            return "Successful";
+            return new Gson().toJson("Successful");
         }
-        return "No such a login";
+        return new Gson().toJson("No such a login");
     }
 
     @RequestMapping("/log_out")
     public String log_out(@RequestParam("user") String user){
         users.get(users.indexOf(new Gson().fromJson(user, User.class))).log_out();
-        return "Logged out";
+        return new Gson().toJson("Logged out");
     }
 
     @RequestMapping("/is_registered")
