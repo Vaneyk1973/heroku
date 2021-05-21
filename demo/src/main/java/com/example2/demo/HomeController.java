@@ -78,41 +78,52 @@ public class HomeController {
         @Expose
         @SerializedName("date")
         public Date date;
+
+        @Override
+        public String toString() {
+            return "Message{" +
+                    "message='" + message + '\'' +
+                    ", user='" + user + '\'' +
+                    ", date=" + date +
+                    '}';
+        }
     }
 
     class User{
-        public String login;
+        private String login;
         private int password;
         private boolean logged_in;
 
-        public User (String login, String password){
-            this.login=login;
-            this.password=password.hashCode();
-            logged_in=false;
+        public User(String login, String password) {
+            this.login = login;
+            this.password = password.hashCode();
+            logged_in = false;
         }
 
         public void setLogin(String login) {
             this.login = login;
         }
 
-        public String getLogin(){return login;}
+        public String getLogin() {
+            return login;
+        }
 
         public void setPassword(String password) {
             this.password = password.hashCode();
         }
 
-        public boolean try_password(String password){
-            if (password.hashCode()==this.password)
+        public boolean try_password(String password) {
+            if (password.hashCode() == this.password)
                 return true;
             return false;
         }
 
-        public void log_in(){
-            logged_in=true;
+        public void log_in() {
+            logged_in = true;
         }
 
-        public void log_out(){
-            logged_in=false;
+        public void log_out() {
+            logged_in = false;
         }
 
 
@@ -127,6 +138,10 @@ public class HomeController {
         @Override
         public int hashCode() {
             return Objects.hash(getLogin());
+        }
+
+        public boolean isLogged_in() {
+            return logged_in;
         }
     }
 }
