@@ -42,11 +42,12 @@ public class HomeController {
     @RequestMapping("/log_in")
     public String log_in(@RequestParam("login") String login, @RequestParam("password") String password){
         if(users.contains(new User(login, password))){
-            if (users.get(users.indexOf(new User(login, password))).try_password(password))
+            if (users.get(users.indexOf(new User(login, password))).try_password(password)){
                 users.get(users.indexOf(new User(login, password))).log_in();
-            return new Gson().toJson("Successful");
+                return new Gson().toJson("Successful");
+            }
         }
-        return new Gson().toJson("No such a login");
+        return new Gson().toJson("Wrong login or/and password");
     }
 
     @RequestMapping("/log_out")
