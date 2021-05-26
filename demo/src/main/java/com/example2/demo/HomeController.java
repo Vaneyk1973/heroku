@@ -17,9 +17,9 @@ public class HomeController {
     ArrayList<User> users=new ArrayList<>();
 
     @RequestMapping("/put_message")
-    public String put_message(@RequestParam("message") Message message){
+    public Message put_message(@RequestParam("message") Message message){
         messages.add(message);
-        return new Gson().toJson(message);
+        return message;
     }
 
     @RequestMapping("/get_messages")
