@@ -3,7 +3,7 @@ package com.example2.demo;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import jdk.internal.org.jline.utils.Log;
+import com.sun.tools.sjavac.Log;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 @RestController
 public class HomeController {
