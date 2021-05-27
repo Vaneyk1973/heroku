@@ -3,6 +3,7 @@ package com.example2.demo;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import jdk.internal.org.jline.utils.Log;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class HomeController {
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message){
         messages.add(new Gson().fromJson(message, Message.class));
+        Log.debug(message);
         return messages.get(messages.size()-1).toString();
     }
 
