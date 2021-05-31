@@ -13,16 +13,13 @@ import java.util.Objects;
 
 @RestController
 public class HomeController {
-    ArrayList<Message> messages = new ArrayList<>();
+    ArrayList<String> messages = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message) {
-        if (message != null&&message!="") {
-            messages.add(new Gson().fromJson(message, Message.class));
-            return new Gson().toJson(message);
-        }
-        return new Gson().toJson("ERROR");
+        messages.add(message);
+        return new Gson().toJson(message);
     }
 
     @RequestMapping("/get_messages")
