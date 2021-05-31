@@ -15,12 +15,13 @@ import java.util.Objects;
 public class HomeController {
     ArrayList<String> messages = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
-    boolean new_message=false;
+
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message) {
         messages.add(message);
-        new_message=true;
+        for (int i = 0; i < users.size(); i++)
+            users.get(i).setNew_message(true);
         return new Gson().toJson(message);
     }
 
@@ -30,10 +31,9 @@ public class HomeController {
     }
 
     @RequestMapping("/is_new_message")
-    public Boolean is_new_message(){
-        if (new_message)
-        {
-            new_message=false;
+    public Boolean is_new_message(@RequestParam("login") String login) {
+        if (users.get(users.indexOf(new User(login, ""))).new_message) {
+            users.get(users.indexOf(new User(login, ""))).new_message = false;
             return true;
         }
         return false;
@@ -90,6 +90,7 @@ public class HomeController {
         private String login;
         private int password;
         private boolean logged_in;
+        private boolean new_message = false;
 
         public User(String login, String password) {
             this.login = login;
@@ -139,6 +140,14 @@ public class HomeController {
 
         public boolean isLogged_in() {
             return logged_in;
+        }
+
+        public boolean isNew_message() {
+            return new_message;
+        }
+
+        public void setNew_message(boolean new_message) {
+            this.new_message = new_message;
         }
     }
 }
