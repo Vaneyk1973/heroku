@@ -13,37 +13,39 @@ import java.util.Objects;
 
 @RestController
 public class HomeController {
-    ArrayList<Message> messages=new ArrayList<>();
-    ArrayList<User> users=new ArrayList<>();
+    ArrayList<Message> messages = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
 
     @RequestMapping("/put_message")
-    public String put_message(@RequestParam("message") String message){
-        if (message!=null)
+    public String put_message(@RequestParam("message") String message) {
+        if (message != null) {
             messages.add(new Gson().fromJson(message, Message.class));
-        return new Gson().toJson(message);
+            return new Gson().toJson(message);
+        }
+        return new Gson().toJson("ERROR");
     }
 
     @RequestMapping("/get_messages")
-    public String get_messages(){
+    public String get_messages() {
         return new Gson().toJson(messages);
     }
 
     @RequestMapping("/register")
-    public String register(@RequestParam("login") String login, @RequestParam("password") String password){
-        User user=new User(login, password);
+    public String register(@RequestParam("login") String login, @RequestParam("password") String password) {
+        User user = new User(login, password);
         if (users.contains(user))
             return new Gson().toJson("This login is already in use");
-        else{
+        else {
             users.add(user);
-            user.logged_in=true;
+            user.logged_in = true;
             return new Gson().toJson("You're registered");
         }
     }
 
     @RequestMapping("/log_in")
-    public String log_in(@RequestParam("login") String login, @RequestParam("password") String password){
-        if(users.contains(new User(login, password))){
-            if (users.get(users.indexOf(new User(login, password))).try_password(password)){
+    public String log_in(@RequestParam("login") String login, @RequestParam("password") String password) {
+        if (users.contains(new User(login, password))) {
+            if (users.get(users.indexOf(new User(login, password))).try_password(password)) {
                 users.get(users.indexOf(new User(login, password))).log_in();
                 return new Gson().toJson("Successful");
             }
@@ -52,24 +54,24 @@ public class HomeController {
     }
 
     @RequestMapping("/log_out")
-    public String log_out(@RequestParam("user") String user){
+    public String log_out(@RequestParam("user") String user) {
         users.get(users.indexOf(new Gson().fromJson(user, User.class))).log_out();
         return new Gson().toJson("Logged out");
     }
 
     @RequestMapping("/is_registered")
-    public String is_registered(@RequestParam("login") String login){
+    public String is_registered(@RequestParam("login") String login) {
         return new Gson().toJson(users.contains(new User(login, "")));
     }
 
     @RequestMapping("/is_logged_in")
-    public String is_logged_in(@RequestParam("login") String login){
+    public String is_logged_in(@RequestParam("login") String login) {
         if (new Gson().fromJson(is_registered(login), Boolean.class))
             return new Gson().toJson(users.get(users.indexOf(new User(login, ""))).logged_in);
         else return new Gson().toJson(false);
     }
 
-    class Message{
+    class Message {
         @Expose
         @SerializedName("message")
         public String message;
@@ -79,18 +81,9 @@ public class HomeController {
         @Expose
         @SerializedName("date")
         public Date date;
-
-        @Override
-        public String toString() {
-            return "Message{" +
-                    "message='" + message + '\'' +
-                    ", user='" + user + '\'' +
-                    ", date=" + date +
-                    '}';
-        }
     }
 
-    class User{
+    class User {
         private String login;
         private int password;
         private boolean logged_in;
