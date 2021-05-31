@@ -72,14 +72,8 @@ public class HomeController {
     }
 
     class Message {
-        @Expose
-        @SerializedName("message")
         public String message;
-        @Expose
-        @SerializedName("user")
         public String user;
-        @Expose
-        @SerializedName("date")
         public Date date;
     }
 
