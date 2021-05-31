@@ -18,8 +18,8 @@ public class HomeController {
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message) {
-        if (message != null) {
-            //messages.add(new Gson().fromJson(message, Message.class));
+        if (message != null&&message!="") {
+            messages.add(new Gson().fromJson(message, Message.class));
             return new Gson().toJson(message);
         }
         return new Gson().toJson("ERROR");
