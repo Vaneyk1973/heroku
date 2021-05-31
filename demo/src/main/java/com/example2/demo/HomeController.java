@@ -15,16 +15,28 @@ import java.util.Objects;
 public class HomeController {
     ArrayList<String> messages = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
+    boolean new_message=false;
 
     @RequestMapping("/put_message")
     public String put_message(@RequestParam("message") String message) {
         messages.add(message);
+        new_message=true;
         return new Gson().toJson(message);
     }
 
     @RequestMapping("/get_messages")
     public String get_messages() {
         return new Gson().toJson(messages);
+    }
+
+    @RequestMapping("/is_new_message")
+    public Boolean is_new_message(){
+        if (new_message)
+        {
+            new_message=false;
+            return true;
+        }
+        return false;
     }
 
     @RequestMapping("/register")
